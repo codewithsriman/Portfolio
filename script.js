@@ -211,3 +211,52 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   });
 });
+
+// ===== CERTIFICATE IMAGE MODAL =====
+function openCertImage(imgId) {
+  const img = document.getElementById(imgId);
+  const modal = document.getElementById("cert-modal");
+  const modalImg = document.getElementById("cert-modal-img");
+
+  if (!img || !modal || !modalImg) return;
+
+  const src = img.getAttribute("src");
+  if (!src) return;
+
+  modalImg.src = src;
+  modalImg.alt = img.alt;
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  // Show error message if image not found
+  modalImg.onerror = function () {
+    modalImg.style.display = "none";
+    if (!document.getElementById("cert-modal-error")) {
+      const msg = document.createElement("p");
+      msg.id = "cert-modal-error";
+      msg.style.cssText =
+        "text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;";
+      msg.innerHTML =
+        '📂 Image not found.<br><br>Add your certificate image to<br><code style="background:#EFF6FF;color:var(--primary);padding:4px 8px;border-radius:4px;font-size:12px;">' +
+        src +
+        "</code>";
+      modalImg.parentNode.appendChild(msg);
+    }
+  };
+  modalImg.style.display = "block";
+  const errEl = document.getElementById("cert-modal-error");
+  if (errEl) errEl.remove();
+}
+
+function closeCertModal() {
+  const modal = document.getElementById("cert-modal");
+  if (modal) {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+}
+
+// Close modal on Escape key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closeCertModal();
+});
