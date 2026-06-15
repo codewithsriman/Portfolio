@@ -62,6 +62,7 @@ navLinks.forEach((link) => {
 const typedText = document.getElementById("typed-text");
 const words = [
   "Full Stack Developer",
+  "Java Developer",
   "Python Developer",
   "AI Enthusiast",
   "Software Developer",
