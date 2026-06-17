@@ -728,8 +728,37 @@ h1, h2, h3, h4 {
   border-radius: var(--radius);
   overflow: hidden;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 .project-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-6px); }
+
+/* Flagship project spans full width and is visually elevated */
+.project-card-flagship {
+  grid-column: 1 / -1;
+  border: 2px solid var(--primary);
+  box-shadow: 0 8px 30px rgba(37,99,235,0.12);
+}
+.project-card-flagship:hover { box-shadow: 0 16px 40px rgba(37,99,235,0.2); }
+
+.flagship-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(217,119,6,0.35);
+  letter-spacing: 0.02em;
+}
 
 .project-thumb {
   height: 180px;
@@ -737,12 +766,19 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: center;
   position: relative;
+  flex-shrink: 0;
 }
 .project-thumb-1 { background: linear-gradient(135deg, #EFF6FF, #DBEAFE); }
 .project-thumb-2 { background: linear-gradient(135deg, #F0FDF4, #DCFCE7); }
+.project-thumb-flagship { background: linear-gradient(135deg, #FEF3C7, #FDE68A); height: 160px; }
 .project-thumb-icon { font-size: 64px; }
 
-.project-body { padding: 28px; }
+.project-body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
 .project-title {
   font-size: 17px;
@@ -776,7 +812,13 @@ h1, h2, h3, h4 {
   font-weight: 500;
 }
 
-.project-actions { display: flex; gap: 10px; }
+.project-card-flagship .ptag {
+  background: #FFFBEB;
+  border-color: #FDE68A;
+  color: #92400E;
+}
+
+.project-actions { display: flex; gap: 10px; margin-top: auto; }
 
 /* ===== CERTIFICATIONS SECTION ===== */
 .certifications { background: var(--surface); }
@@ -989,14 +1031,18 @@ h1, h2, h3, h4 {
   gap: 24px;
 }
 
+.edu-grid-4 { grid-template-columns: repeat(2, 1fr); }
+
 .edu-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 36px 32px;
+  padding: 32px;
   position: relative;
   transition: var(--transition);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .edu-card::before {
   content: '';
@@ -1007,6 +1053,15 @@ h1, h2, h3, h4 {
 }
 .edu-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 
+.edu-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 .edu-year-badge {
   display: inline-block;
   background: #EFF6FF;
@@ -1016,7 +1071,19 @@ h1, h2, h3, h4 {
   border-radius: 100px;
   font-size: 12px;
   font-weight: 600;
-  margin-bottom: 20px;
+}
+
+.edu-latest-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(16,185,129,0.1);
+  color: #059669;
+  border: 1px solid rgba(16,185,129,0.25);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .edu-icon {
@@ -1031,10 +1098,11 @@ h1, h2, h3, h4 {
 }
 
 .edu-degree {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--heading);
   margin-bottom: 8px;
+  line-height: 1.35;
 }
 .edu-field {
   font-size: 14px;
@@ -1046,6 +1114,42 @@ h1, h2, h3, h4 {
   font-size: 14px;
   color: var(--muted);
   font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.edu-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.edu-grade {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--heading);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+.edu-status {
+  font-size: 12px;
+  font-weight: 600;
+  color: #059669;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.edu-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #059669;
 }
 
 /* ===== CONTACT SECTION ===== */
