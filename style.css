@@ -1407,6 +1407,9 @@ h1, h2, h3, h4 {
 
   .hero-heading { font-size: 36px; }
   .hero-typed-wrapper { font-size: 18px; }
+
+  .flagship-badge { position: static; display: inline-flex; margin: 16px 16px 0; }
+  .project-card-flagship .project-body { padding-top: 8px; }
 }
 
 @media (max-width: 480px) {
